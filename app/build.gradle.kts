@@ -106,6 +106,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
+    // Kotlin Collections
+    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
+
     // Local unit tests
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("androidx.test:core:1.5.0")
