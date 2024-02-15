@@ -38,10 +38,10 @@ import kotlinx.collections.immutable.ImmutableList
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchTopBar(
+    modifier: Modifier = Modifier,
     titleContent: @Composable () -> Unit = {},
     searchQuery: String?,
     onSearchQueryChange: (String?) -> Unit,
-    modifier: Modifier = Modifier,
     actions: ImmutableList<AppBar.AppBarAction>,
     placeholderText: String? = null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
