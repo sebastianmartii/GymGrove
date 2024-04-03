@@ -1,3 +1,148 @@
 <resources>
+
+    <!-- common strings -->
     <string name="app_name">GymGrove</string>
+    <string name="see_more">See more</string>
+    <string name="optional_supporting_text">Optional</string>
+    <string name="dot_separator"> · </string>
+    <string name="dash_separator"> - </string>
+    <string name="search_hint">Search…</string>
+    <string name="name_label">Name</string>
+    <string name="scroll_backward">Scroll Backward</string>
+    <string name="scroll_forward">Scroll Forward</string>
+    <string name="minutes_argument_text">%1$d min</string>
+    <string name="sets_argument_text">%1$d sets</string>
+    <string name="remove_everything">Remove Everything</string>
+    <string name="finish">Finish</string>
+    <string name="next">Next</string>
+    <string name="or">Or</string>
+    <string name="unsaved_changes">Unsaved Changes</string>
+
+    <!-- tooltip strings -->
+    <string name="reps_tooltip_title">Additional Reps Info</string>
+    <string name="sets_tooltip_rest_time_info">Rest time: %1$ds</string>
+    <string name="sets_tooltip_title">Additional Sets Info</string>
+    <string name="sets_tooltip_warm_up_sets_info">Warm up sets: %1$d</string>
+    <string name="reps_tooltip_rir_info">Rest in reserve: %1$d</string>
+    <string name="reps_tooltip_partials_info">Partial reps: %1$d</string>
+    <string name="reps_tooltip_tempo_info">Tempo: %1$d-%2$d-%3$d-%4$d </string>
+
+    <!-- exercise -->
+    <string name="bench_press">Bench Press</string>
+    <string name="squat">Squat</string>
+    <string name="deadlift">Deadlift</string>
+    <string name="selected_muscle_chip">Selected Muscle</string>
+    <string name="primary_target_muscle_label">Primary Target Muscle</string>
+    <string name="secondary_target_muscle_label">Secondary Target Muscle</string>
+    <string name="exercise_name_section_title">Exercise Name</string>
+    <string name="exercise_target_muscles_section_title">Target Muscles</string>
+    <string name="exercise_additional_info_section_title">Additional Info</string>
+    <string name="additional_info_label">Additional Info</string>
+    <string name="additional_info_hint">Targets long head of the triceps, perform to full contraction…</string>
+
+    <!-- notifications -->
+    <string name="notifications_creator_title_label">Notification Title</string>
+    <string name="notifications_creator_message_label">Notification Message</string>
+    <string name="notification_creator_repeating_label">Repeating</string>
+    <string name="cancel_notification_dialog_title">Cancel Notification</string>
+
+    <!-- onboarding -->
+    <string name="onboarding_split_step_header">Choose or create your workout split</string>
+    <string name="onboarding_notification_permission_dialog_headline">Allow <b>GymGrove</b> to send you notifications?</string>
+    <string name="onboarding_notification_permission_dialog_description">
+        <b>Gym Grove</b> uses this to send notifications you scheduled.
+        If you deny this permission you wont see any incoming notifications.
+    </string>
+    <string name="onboarding_alarm_permission_dialog_headline">Allow <b>GymGrove</b> to schedule exact Alarms?</string>
+
+    <!-- dashboard -->
+    <string name="rest_card_text">
+        Rest days are crucial for muscle growth,\nenabling your muscles to regenerate\nand maximize growth.
+    </string>
+    <string name="this_month_title">This month</string>
+    <string name="this_month_workouts_and_duration_text">You did %1$d workouts, which lasted %2$d minutes</string>
+    <string name="weight_argument_text">1RM: %1$.0fkg</string>
+    <string name="notification_time_argument_text">%1$d:%2$d</string>
+
+    <!-- titles -->
+    <string name="routine_screen_title">Grove</string>
+    <string name="home_screen_title">Home</string>
+    <string name="dashboard_screen_title">Dashboard</string>`
+    <string name="notifications_title">Notifications</string>
+    <string name="alarms_title">Alarms</string>
+    <string name="workouts_title">Workouts</string>
+    <string name="history_title">History</string>
+    <string name="exercises_title">Exercises</string>
+    <string name="dashboard_big_three_lifts_section_title">Big Three Lifts</string>
+    <string name="dashboard_current_split_section_title">Current Split</string>
+    <string name="dashboard_pinned_exercises_section_title">Pinned Exercises</string>
+
+    <!-- common actions -->
+    <string name="save_action">Save</string>
+    <string name="cancel_action">Cancel</string>
+    <string name="remove_action">Remove</string>
+    <string name="reset_search_query_action">Reset Query</string>
+    <string name="search_action">Search</string>
+    <string name="cancel_search_action">Cancel Search</string>
+    <string name="more_action">More</string>
+    <string name="skip_action">Skip</string>
+    <string name="confirm_action">Confirm</string>
+    <string name="allow_action">Allow</string>
+    <string name="deny_action">Deny</string>
+
+    <!-- actions -->
+    <string name="reset_history_action">Reset History</string>
+    <string name="navigate_to_workout_creator_action">Navigate To Workout Creator</string>
+    <string name="show_workout_creator_bottom_sheet_action">Add</string>
+    <string name="expand_optional_exercise_creator_section_action">Expand Optional Section</string>
+    <string name="remove_exercise_action">Remove Exercise</string>
+    <string name="delete_saved_workout_action">Delete Saved Workout</string>
+    <string name="edit_saved_workout_action">Edit Saved Workout</string>
+    <string name="navigate_to_exercise_creator_action">Navigate To Exercise Creator</string>
+    <string name="delete_saved_exercises_action">Delete Saved Exercises</string>
+    <string name="delete_workout_action">Delete Workout</string>
+    <string name="dashboard_floating_action_button_action">Workout</string>
+    <string name="navigate_back_action">Navigate Back</string>
+    <string name="delete_workout_checkbox_action">Delete exercise entries for this workout</string>
+    <string name="edit_saved_exercise_action">Edit Saved Exercise</string>
+    <string name="remove_split_workout_action">Remove Split Workout</string>
+    <string name="add_split_workout_action">Add Split Workout</string>
+    <string name="reset_split_action">Reset Split</string>
+    <string name="navigate_to_split_set_up_action">Set Up Your Own Split!</string>
+    <string name="workout_action">Workout</string>
+    <string name="rest_action">Rest</string>
+    <string name="assign_workout_action">Assign</string>
+    <string name="schedule_notification_action">Schedule</string>
+    <string name="edit_saved_notification_action">Edit Saved Notification</string>
+    <string name="delete_saved_notification_action">Delete Saved Notification</string>
+    <string name="next_workout_box_change_background_action">Background</string>
+    <string name="next_workout_box_change_split_action">Split</string>
+
+    <!-- messages -->
+    <string name="empty_saved_exercises_screen_message">You haven\'t saved any exercises</string>
+    <string name="empty_history_screen_message">You haven\'t exercised recently</string>
+    <string name="empty_saved_workout_screen_message">You have not saved any workouts</string>
+    <string name="empty_notification_screen_message">You haven\'t scheduled any notifications</string>
+    <string name="delete_saved_workouts_confirmation_message">Are you sure? All workouts will be lost</string>
+    <string name="delete_all_history_confirmation_message">Are you sure? All history will be lost</string>
+    <string name="delete_workout_confirmation_message">Are you sure? Workout will be lost</string>
+    <string name="no_results_found_message">No results found</string>
+    <string name="onboarding_workouts_step_message">
+        Compose Workouts from the exercises saved beforehand,
+        and run them when it is time for you to workout,
+        saving all necessary exercise info like working weight, performed sets and reps.
+    </string>
+    <string name="onboarding_exercises_step_message">Browse or create and save Exercises you can latter use in your workouts!</string>
+    <string name="onboarding_notifications_step_message">Set Notifications for anything you desire!</string>
+    <string name="onboarding_history_step_message">
+        By default all workouts you do are persistently saved,
+        which allows you to keep track of your progress more easily and efficiently!
+    </string>
+    <string name="dashboard_current_split_empty_workout_message">Not done yet</string>
+    <string name="unsaved_changes_dialog_message">Are you sure? All unsaved changes will be lost!</string>
+    <string name="notification_creator_incorrect_input_message">Time or title you provided is incorrect.</string>
+    <string name="onboarding_alarms_step_message">
+        Schedule alarms for the exact time you want!!
+        If not granted alarms will trigger approximately at a given time.
+    </string>
 </resources>

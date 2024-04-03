@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.GymGrove" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.StartingTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_screen_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.GymGrove</item>
+    </style>
 </resources>
