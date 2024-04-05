@@ -3,8 +3,8 @@ package com.example.gymgrove.domain.exercise.model
 data class SavedExercise(
     val id: Int,
     val name: String,
-    val primaryTargetMuscle: TargetMuscles,
+    val primaryTargetMuscle: String,
     // optional
-    val secondaryTargetMuscle: TargetMuscles? = null,
-    val tips: String? = null
+    val secondaryTargetMuscle: String? = null,
+    val additionalInfo: String? = null
 )
