@@ -166,7 +166,7 @@ fun ExerciseCreatorScreen(
                 }
             }
             Section(
-                title = stringResource(id = R.string.exercise_tips_section_title),
+                title = stringResource(id = R.string.exercise_additional_info_section_title),
                 icon = Icons.Default.Insights,
                 showDivider = false
             ) {

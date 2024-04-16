@@ -4,8 +4,7 @@ import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import cafe.adriel.voyager.hilt.ScreenModelFactory
-import com.example.gymgrove.domain.exercise.use_cases.GetSavedExercises
-import com.example.gymgrove.domain.exercise.use_cases.SaveExercise
+import com.example.gymgrove.domain.exercise.repository.ExerciseRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
@@ -15,8 +14,7 @@ import kotlinx.coroutines.launch
 
 class ExerciseCreatorScreenModel @AssistedInject constructor(
     @Assisted val exerciseId: Int? = null,
-    private val getSavedExercises: GetSavedExercises,
-    private val saveExerciseUseCase: SaveExercise
+    private val exerciseRepository: ExerciseRepository
 ) : StateScreenModel<ExerciseCreatorScreenModel.State>(State()) {
 
 
@@ -28,7 +26,7 @@ class ExerciseCreatorScreenModel @AssistedInject constructor(
                         isLoading = true
                     )
                 }
-                getSavedExercises.awaitOne(exerciseId).apply {
+                exerciseRepository.getSavedExercise(exerciseId).apply {
                     mutableState.update {
                         it.copy(
                             name = name,
@@ -83,7 +81,7 @@ class ExerciseCreatorScreenModel @AssistedInject constructor(
 
     fun saveExercise(name: String, primaryMuscle: String, secondaryMuscle: String?, tips: String?) {
         screenModelScope.launch {
-            saveExerciseUseCase.await(name, primaryMuscle, secondaryMuscle, tips)
+            exerciseRepository.insert(name, primaryMuscle, secondaryMuscle, tips)
         }
     }
 
