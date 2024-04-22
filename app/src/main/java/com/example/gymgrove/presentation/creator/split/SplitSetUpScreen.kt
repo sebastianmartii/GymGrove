@@ -9,6 +9,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.gymgrove.domain.onboarding.model.Split
 import com.example.gymgrove.presentation.creator.split.components.SplitSetUpScreen
+import com.example.gymgrove.presentation.util.NavigationHelper
 import com.example.gymgrove.presentation.util.Screen
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.collectLatest
@@ -26,7 +27,7 @@ object SplitSetUpScreen : Screen() {
         LaunchedEffect(screenModel.navigationFlow) {
             screenModel.navigationFlow.collectLatest {
                 when(it) {
-                    SplitSetUpScreenModel.UiEvent.NavigateBack -> {
+                    NavigationHelper.UiEvent.NavigateBack -> {
                         navigator.pop()
                     }
                 }

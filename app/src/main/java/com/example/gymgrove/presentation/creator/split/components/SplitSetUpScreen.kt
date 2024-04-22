@@ -18,6 +18,7 @@ import androidx.compose.material3.AssistChip
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -92,6 +93,14 @@ fun SplitSetUpScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
+            item(
+                key = SplitSetUpScreenItems.PROGRESS_INDICATOR,
+                contentType = SplitSetUpScreenItems.PROGRESS_INDICATOR
+            ) {
+                if (state.isLoading) {
+                    LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                }
+            }
             item(
                 key = SplitSetUpScreenItems.POPULAR_SPLITS_ROW,
                 contentType = SplitSetUpScreenItems.POPULAR_SPLITS_ROW
@@ -187,7 +196,7 @@ fun SplitSetUpScreen(
 }
 
 private enum class SplitSetUpScreenItems {
-    WORKOUT, INPUT_FIELD, POPULAR_SPLITS_ROW
+    WORKOUT, INPUT_FIELD, POPULAR_SPLITS_ROW, PROGRESS_INDICATOR
 }
 
 private fun workoutSupportingText(index: Int): String {
