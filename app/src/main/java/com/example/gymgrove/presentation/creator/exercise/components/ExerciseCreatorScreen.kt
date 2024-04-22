@@ -25,6 +25,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -71,7 +72,6 @@ fun ExerciseCreatorScreen(
                 ExtendedFloatingActionButton(
                     onClick = {
                         onExerciseSave(state.name!!, state.primaryTargetMuscle!!, state.secondaryTargetMuscle, state.tips)
-                        onNavigateBack()
                     },
                     content = {
                         Icon(
@@ -96,6 +96,9 @@ fun ExerciseCreatorScreen(
                 )
                 .verticalScroll(rememberScrollState())
         ) {
+            if (state.isLoading) {
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+            }
             Section(
                 title = stringResource(id = R.string.exercise_name_section_title),
                 icon = Icons.Outlined.NoteAlt

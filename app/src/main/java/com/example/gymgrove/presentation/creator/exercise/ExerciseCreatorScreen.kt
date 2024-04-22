@@ -1,6 +1,7 @@
 package com.example.gymgrove.presentation.creator.exercise
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import cafe.adriel.voyager.hilt.getScreenModel
@@ -9,8 +10,10 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.gymgrove.presentation.creator.exercise.components.LowerBody
 import com.example.gymgrove.presentation.creator.exercise.components.UpperBody
 import com.example.gymgrove.presentation.creator.exercise.components.ExerciseCreatorScreen
+import com.example.gymgrove.presentation.util.NavigationHelper
 import com.example.gymgrove.presentation.util.Screen
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.flow.collectLatest
 
 data class ExerciseCreatorScreen(
     val exerciseId: Int? = null
@@ -22,6 +25,16 @@ data class ExerciseCreatorScreen(
             factory.create(exerciseId)
         }
         val state by screenModel.state.collectAsStateWithLifecycle()
+
+        LaunchedEffect(screenModel.navigationFlow) {
+            screenModel.navigationFlow.collectLatest {
+                when(it) {
+                    NavigationHelper.UiEvent.NavigateBack -> {
+                        navigator.pop()
+                    }
+                }
+            }
+        }
 
         ExerciseCreatorScreen(
             state = state,

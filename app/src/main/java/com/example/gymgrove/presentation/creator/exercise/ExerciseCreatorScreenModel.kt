@@ -5,9 +5,13 @@ import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import cafe.adriel.voyager.hilt.ScreenModelFactory
 import com.example.gymgrove.domain.exercise.repository.ExerciseRepository
+import com.example.gymgrove.presentation.util.NavigationHelper
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -15,8 +19,11 @@ import kotlinx.coroutines.launch
 class ExerciseCreatorScreenModel @AssistedInject constructor(
     @Assisted val exerciseId: Int? = null,
     private val exerciseRepository: ExerciseRepository
-) : StateScreenModel<ExerciseCreatorScreenModel.State>(State()) {
+) : StateScreenModel<ExerciseCreatorScreenModel.State>(State()), NavigationHelper {
 
+
+    override val navigationChannel: Channel<NavigationHelper.UiEvent> = Channel()
+    override val navigationFlow: Flow<NavigationHelper.UiEvent> = navigationChannel.receiveAsFlow()
 
     init {
         screenModelScope.launch {
@@ -81,7 +88,13 @@ class ExerciseCreatorScreenModel @AssistedInject constructor(
 
     fun saveExercise(name: String, primaryMuscle: String, secondaryMuscle: String?, tips: String?) {
         screenModelScope.launch {
+            mutableState.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
             exerciseRepository.insert(name, primaryMuscle, secondaryMuscle, tips)
+            navigationChannel.send(NavigationHelper.UiEvent.NavigateBack)
         }
     }
 
