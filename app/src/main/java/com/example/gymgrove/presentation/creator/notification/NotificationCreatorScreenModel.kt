@@ -6,10 +6,12 @@ import cafe.adriel.voyager.core.model.screenModelScope
 import cafe.adriel.voyager.hilt.ScreenModelFactory
 import com.example.gymgrove.domain.notification.repository.NotificationRepository
 import com.example.gymgrove.domain.notification.use_cases.ScheduleNotification
+import com.example.gymgrove.presentation.util.NavigationHelper
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -18,12 +20,12 @@ class NotificationCreatorScreenModel @AssistedInject constructor(
     @Assisted val notificationId: Int? = null,
     private val scheduleNotification: ScheduleNotification,
     private val notificationRepository: NotificationRepository
-) : StateScreenModel<NotificationCreatorScreenModel.State>(State()) {
+) : StateScreenModel<NotificationCreatorScreenModel.State>(State()), NavigationHelper {
 
     private var initialState = State()
 
-    private val navigationChannel = Channel<UiEvent>()
-    val navigationFlow = navigationChannel.receiveAsFlow()
+    override val navigationChannel: Channel<NavigationHelper.UiEvent> = Channel()
+    override val navigationFlow: Flow<NavigationHelper.UiEvent> = navigationChannel.receiveAsFlow()
 
     init {
         screenModelScope.launch {
@@ -82,7 +84,7 @@ class NotificationCreatorScreenModel @AssistedInject constructor(
         }
         screenModelScope.launch {
             scheduleNotification.schedule(notificationId, hour, minute, title, message, repeating)
-            navigationChannel.send(UiEvent.NavigateBack)
+            navigationChannel.send(NavigationHelper.UiEvent.NavigateBack)
         }
     }
 
@@ -121,9 +123,5 @@ class NotificationCreatorScreenModel @AssistedInject constructor(
     @AssistedFactory
     interface Factory : ScreenModelFactory {
         fun create(notificationId: Int?): NotificationCreatorScreenModel
-    }
-
-    sealed interface UiEvent {
-        data object NavigateBack : UiEvent
     }
 }

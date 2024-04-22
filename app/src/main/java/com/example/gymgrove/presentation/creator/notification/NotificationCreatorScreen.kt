@@ -16,7 +16,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.gymgrove.R
 import com.example.gymgrove.presentation.creator.notification.components.NotificationCreatorScreen
 import com.example.gymgrove.presentation.creator.notification.components.UnsavedChangesDialog
-import com.example.gymgrove.presentation.util.LoadingScreen
+import com.example.gymgrove.presentation.util.NavigationHelper
 import com.example.gymgrove.presentation.util.Screen
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,7 +39,7 @@ data class NotificationCreatorScreen(
         LaunchedEffect(screenModel.navigationFlow) {
             screenModel.navigationFlow.collectLatest {
                 when(it) {
-                    NotificationCreatorScreenModel.UiEvent.NavigateBack -> {
+                    NavigationHelper.UiEvent.NavigateBack -> {
                         navigator.pop()
                     }
                 }
@@ -48,32 +48,27 @@ data class NotificationCreatorScreen(
 
         val context = LocalContext.current
 
-        if (state.isLoading) {
-            LoadingScreen()
-        } else {
-            NotificationCreatorScreen(
-                state = state,
-                snackbarHostState = snackbarHostState,
-                onTitleChange = screenModel::changeTitle,
-                onMessageChange = screenModel::changeMessage,
-                onRepeatingChange = screenModel::changeRepeating,
-                onSchedule = { hour, minute, title, message, repeating ->
-                    if (isNotificationValid(hour, minute, title, DateFormat.is24HourFormat(context))) {
-                        screenModel.scheduleNotification(hour, minute, title, message, repeating)
-                    } else {
-                        scope.launch {
-                            snackbarHostState.showSnackbar(incorrectInputText)
-                        }
-                    }
-                },
-                onUnsavedChangesDialogShow = {
-                    screenModel.showUnsavedChangesDialog().also { showDialog ->
-                        if (!showDialog) navigator.pop()
+        NotificationCreatorScreen(
+            state = state,
+            snackbarHostState = snackbarHostState,
+            onTitleChange = screenModel::changeTitle,
+            onMessageChange = screenModel::changeMessage,
+            onRepeatingChange = screenModel::changeRepeating,
+            onSchedule = { hour, minute, title, message, repeating ->
+                if (isNotificationValid(hour, minute, title, DateFormat.is24HourFormat(context))) {
+                    screenModel.scheduleNotification(hour, minute, title, message, repeating)
+                } else {
+                    scope.launch {
+                        snackbarHostState.showSnackbar(incorrectInputText)
                     }
                 }
-            )
-        }
-
+            },
+            onUnsavedChangesDialogShow = {
+                screenModel.showUnsavedChangesDialog().also { showDialog ->
+                    if (!showDialog) navigator.pop()
+                }
+            }
+        )
 
         if (state.unsavedChangesDialog) {
             UnsavedChangesDialog(
