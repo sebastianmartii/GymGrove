@@ -18,6 +18,10 @@
     <string name="or">Or</string>
     <string name="unsaved_changes">Unsaved Changes</string>
     <string name="push_workout">Push</string>
+    <string name="push_a">Push A</string>
+    <string name="popular_training_splits">Popular Training Splits</string>
+    <string name="saved_exercises">Saved Exercises</string>
+    <string name="exercises_count_argument_text">%1$d exercises</string>
 
     <!-- tooltip strings -->
     <string name="reps_tooltip_title">Additional Reps Info</string>
@@ -78,6 +82,7 @@
     <string name="dashboard_current_split_section_title">Current Split</string>
     <string name="dashboard_pinned_exercises_section_title">Pinned Exercises</string>
     <string name="split_set_up_screen_title">Create Your Split</string>
+    <string name="workout_creator_screen_title">New Workout</string>
 
     <!-- common actions -->
     <string name="save_action">Save</string>
@@ -93,6 +98,8 @@
     <string name="deny_action">Deny</string>
     <string name="undo_action">Undo</string>
     <string name="add_action">Add</string>
+    <string name="edit_action">Edit</string>
+    <string name="create_action">Create</string>
 
     <!-- actions -->
     <string name="reset_history_action">Reset History</string>
@@ -149,4 +156,5 @@
         Schedule alarms for the exact time you want!!
         If not granted alarms will trigger approximately at a given time.
     </string>
+    <string name="finish_workout_dialog_title">Finish your workout by giving it a name</string>
 </resources>
