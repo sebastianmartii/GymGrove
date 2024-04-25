@@ -1,4 +1,4 @@
-package com.example.gymgrove.data.local.exercise
+package com.example.gymgrove.data.exercise.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -19,6 +19,12 @@ interface ExerciseDao {
         }
     }
 
+    @Query("DELETE FROM exercises WHERE workoutId = :id")
+    suspend fun deleteWorkoutExercises(id: Int)
+
     @Query("SELECT * FROM exercises WHERE name LIKE '%' || :exerciseName || '%'")
     fun getExerciseHistory(exerciseName: String): Flow<List<Exercise>>
+
+    @Query("SELECT MAX(workingWeight) FROM exercises WHERE name LIKE '%' || :exerciseName || '%'")
+    fun getExerciseMaxWeight(exerciseName: String): Flow<Float>
 }
